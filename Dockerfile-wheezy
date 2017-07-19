@@ -2,11 +2,12 @@
 # Based on Dockerfile for drupal:7-apache https://github.com/docker-library/drupal/blob/master/7/apache/Dockerfile
 FROM eugenesia/phpfarm:wheezy
 
-MAINTAINER Eugene Sia <eugene@eugenesia.co.uk>
 LABEL maintainer="Eugene Sia <eugene@eugenesia.co.uk>" \
-  description="PHP5/Apache environment suitable for developing a Drupal 7 site."
+  description="PHP5/Apache environment using PHPFarm for developing a Drupal 7 site."
 
+# Configure Apache.
 RUN a2enmod rewrite
+COPY phpfarm.conf /etc/apache2/conf.d/
 
 # install the PHP extensions we need
 RUN apt-get update \

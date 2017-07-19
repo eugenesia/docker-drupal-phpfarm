@@ -17,19 +17,7 @@ RUN apt-get update \
     libpng12-dev \
     libjpeg-dev \
     libpq-dev \
-  && rm -rf /var/lib/apt/lists/* \
-  && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
-  && docker-php-ext-install \
-    gd \
-    mbstring \
-    opcache \
-    pdo \
-    pdo_mysql \
-    pdo_pgsql \
-    zip \
-  # Install XHProf PECL extension for perf profiling.
-  && pecl install xhprof-beta \
-  && docker-php-ext-enable xhprof
+  && rm -rf /var/lib/apt/lists/*
 
 # Configure PHP.
 COPY php.ini /usr/local/etc/php/
